@@ -24,3 +24,6 @@ http://localhost:3000
 
 ## Issues
 Kura simulator may fail because of mqtt didn't started. You must to restart it.
+```
+docker restart kapua-deployment_kura-simulator_1
+```
