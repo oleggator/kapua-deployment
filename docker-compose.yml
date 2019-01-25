@@ -63,7 +63,28 @@ services:
       - events-broker
     environment:
       - KAPUA_DISABLE_SSL=true
-      
+
+  kura-simulator:
+    image: kapua/kura-simulator
+    environment:
+      - KSIM_BASE_NAME=sim-
+      - KSIM_ACCOUNT_NAME=kapua-sys
+      - KSIM_NUM_GATEWAYS=1
+      - KSIM_BROKER_USER=kapua-broker
+      - KSIM_BROKER_PASSWORD=kapua-password
+      - KSIM_BROKER_PROTO=tcp
+      - KSIM_BROKER_HOST=broker
+      - KSIM_BROKER_PORT=1883
+      - KSIM_SIMULATION_URL=/data/model.json
+      - KAPUA_DISABLE_SSL=true
+    depends_on:
+      - broker
+      - db
+      - es
+      - events-broker
+    volumes:
+    - ./:/data
+
 volumes:
   es-storage:
   grafana-storage:
