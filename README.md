@@ -1,4 +1,4 @@
-# kapua-deployment
+# Kapua Deployment
 
 ## How to run
 ```
