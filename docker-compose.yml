@@ -91,6 +91,7 @@ services:
       - 3000:3000
     volumes:
       - grafana-storage:/var/lib/grafana
+      - ./grafana:/etc/grafana/provisioning
     depends_on:
       - es
 
