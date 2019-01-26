@@ -2,7 +2,7 @@ version: '3.5'
 
 services:
   db:
-    image: kapua/kapua-sql:1.0.2
+    image: kapua/kapua-sql:1.0.3
     ports:
     - 8181:8181
     - 3306:3306
@@ -22,14 +22,14 @@ services:
       - es-storage:/usr/share/elasticsearch/data
 
   events-broker:
-    image: kapua/kapua-events-broker:1.0.2
+    image: kapua/kapua-events-broker:1.0.3
     ports:
     - 5672:5672
     environment:
       - KAPUA_DISABLE_SSL=true
 
   broker:
-    image: kapua/kapua-broker:1.0.2
+    image: kapua/kapua-broker:1.0.3
     ports:
     - 1883:1883
     - 61614:61614
@@ -41,7 +41,7 @@ services:
       - KAPUA_DISABLE_SSL=true
 
   kapua-console:
-    image: kapua/kapua-console:1.0.2
+    image: kapua/kapua-console:1.0.3
     ports:
     - 8080:8080
     depends_on:
@@ -53,7 +53,7 @@ services:
       - KAPUA_DISABLE_SSL=true
 
   kapua-api:
-    image: kapua/kapua-api:1.0.2
+    image: kapua/kapua-api:1.0.3
     ports:
     - 8081:8080
     depends_on:
@@ -65,7 +65,7 @@ services:
       - KAPUA_DISABLE_SSL=true
 
   kura-simulator:
-    image: kapua/kura-simulator
+    image: kapua/kura-simulator:2017-07-28
     environment:
       - KSIM_BASE_NAME=sim-
       - KSIM_ACCOUNT_NAME=kapua-sys
@@ -86,7 +86,7 @@ services:
     - ./:/data
 
   grafana:
-    image: grafana/grafana
+    image: grafana/grafana:5.4.3
     ports:
       - 3000:3000
     volumes:
