@@ -4,8 +4,8 @@ services:
   db:
     image: kapua/kapua-sql:1.0.3
     ports:
-    - 8181:8181
-    - 3306:3306
+      - 8181:8181
+      - 3306:3306
 
   es:
     image: elasticsearch:5.4.0
@@ -24,45 +24,37 @@ services:
   events-broker:
     image: kapua/kapua-events-broker:1.0.3
     ports:
-    - 5672:5672
-    environment:
-      - KAPUA_DISABLE_SSL=true
+      - 5672:5672
 
   broker:
     image: kapua/kapua-broker:1.0.3
     ports:
-    - 1883:1883
-    - 61614:61614
+      - 1883:1883
+      - 61614:61614
     depends_on:
       - db
       - es
       - events-broker
-    environment:
-      - KAPUA_DISABLE_SSL=true
 
   kapua-console:
     image: kapua/kapua-console:1.0.3
     ports:
-    - 8080:8080
+      - 8080:8080
     depends_on:
       - broker
       - db
       - es
       - events-broker
-    environment:
-      - KAPUA_DISABLE_SSL=true
 
   kapua-api:
     image: kapua/kapua-api:1.0.3
     ports:
-    - 8081:8080
+      - 8081:8080
     depends_on:
       - broker
       - db
       - es
       - events-broker
-    environment:
-      - KAPUA_DISABLE_SSL=true
 
   kura-simulator:
     image: kapua/kura-simulator:2017-07-28
@@ -76,14 +68,13 @@ services:
       - KSIM_BROKER_HOST=broker
       - KSIM_BROKER_PORT=1883
       - KSIM_SIMULATION_URL=/data/model.json
-      - KAPUA_DISABLE_SSL=true
     depends_on:
       - broker
       - db
       - es
       - events-broker
     volumes:
-    - ./:/data
+      - ./:/data
 
   grafana:
     image: grafana/grafana:5.4.3
@@ -96,5 +87,5 @@ services:
       - es
 
 volumes:
-  es-storage:
-  grafana-storage:
+  es-storage: null
+  grafana-storage: null
