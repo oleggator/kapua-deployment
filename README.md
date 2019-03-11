@@ -21,9 +21,3 @@ http://localhost:8081
 ```
 http://localhost:3000
 ```
-
-## Issues
-Kura simulator may fail because of mqtt broker didn't start. You must restart it.
-```
-docker restart kapua-deployment_kura-simulator_1
-```

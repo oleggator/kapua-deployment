@@ -68,6 +68,15 @@ services:
       - KSIM_BROKER_HOST=broker
       - KSIM_BROKER_PORT=1883
       - KSIM_SIMULATION_URL=/data/model.json
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+          sleep 30s
+          java \
+            -Dlogback.configurationFile=/opt/kapua-simulator-kura/logback.xml \
+            -cp /opt/kapua-simulator-kura/kapua-simulator-kura-0.3.0-SNAPSHOT-app.jar \
+            org.eclipse.kapua.kura.simulator.main.SimulatorRunner
     depends_on:
       - broker
       - db
