@@ -1,13 +1,15 @@
 version: '3.5'
 
 services:
-  db:
+  # Devices information storage
+  db: # h2
     image: kapua/kapua-sql:1.0.4
     ports:
       - 8181:8181
       - 3306:3306
 
-  es:
+  # Metrics storage
+  es: # elasticsearch
     image: elasticsearch:5.4.0
     ports:
       - 9200:9200
@@ -21,12 +23,14 @@ services:
     volumes:
       - es-storage:/usr/share/elasticsearch/data
 
-  events-broker:
+  # Connect kapua modules (AMQP)
+  events-broker: # ActiveMQ
     image: kapua/kapua-events-broker:1.0.4
     ports:
       - 5672:5672
 
-  broker:
+  # Connect kura devices (MQTT)
+  broker: # ActiveMQ Artemis
     image: kapua/kapua-broker:1.0.4
     ports:
       - 1883:1883
@@ -36,7 +40,7 @@ services:
       - es
       - events-broker
 
-  kapua-console:
+  kapua-console: # web admin
     image: kapua/kapua-console:1.0.4
     ports:
       - 8080:8080
@@ -46,7 +50,7 @@ services:
       - es
       - events-broker
 
-  kapua-api:
+  kapua-api: # rest api
     image: kapua/kapua-api:1.0.4
     ports:
       - 8081:8080
