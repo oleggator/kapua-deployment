@@ -98,6 +98,9 @@ services:
       - ./grafana:/etc/grafana/provisioning
     depends_on:
       - es
+    environment:
+      GF_SECURITY_ADMIN_USER: kapua-sys
+      GF_SECURITY_ADMIN_PASSWORD: kapua-password
 
 volumes:
   es-storage: null
